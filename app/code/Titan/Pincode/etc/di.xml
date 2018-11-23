@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Titan\Pincode\Model\Resource\Item\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">pincode</argument>
+            <argument name="resourceModel" xsi:type="string">Titan\Pincode\Model\Resource\Item</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="titan_pincode_grid_data_source" xsi:type="string">Titan\Pincode\Model\Resource\Item\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <!--&lt;!&ndash;<type name="Magento\Framework\Console\CommandList">&ndash;&gt;-->
+        <!--&lt;!&ndash;<arguments>&ndash;&gt;-->
+            <!--&lt;!&ndash;<argument name="commands" xsi:type="array">&ndash;&gt;-->
+                <!--&lt;!&ndash;<item name="masteringAddItem" xsi:type="object">Mastering\SampleModule\Console\Command\AddItem</item>&ndash;&gt;-->
+            <!--&lt;!&ndash;</argument>&ndash;&gt;-->
+        <!--&lt;!&ndash;</arguments>&ndash;&gt;-->
+    <!--&lt;!&ndash;</type>&ndash;&gt;-->
+    <!--&lt;!&ndash;<preference for="Mastering\SampleModule\Api\Data\ItemInterface" type="Mastering\SampleModule\Model\Item"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;<preference for="Mastering\SampleModule\Api\ItemRepositoryInterface" type="Mastering\SampleModule\Model\ItemRepository"/>&ndash;&gt;-->
+    <!--<virtualType name="Titan\Pincode\Model\ResourceModel\Item\Grid\Collection">-->
+        <!--<arguments>-->
+            <!--<argument name="mainTable" xsi:type="string">pincode</argument>-->
+            <!--<argument name="resourceModel" xsi:type="string">Titan\Pincode\Model\ResourceModel\Item</argument>-->
+        <!--</arguments>-->
+    <!--</virtualType>-->
+
+    <!--<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">-->
+        <!--<arguments>-->
+            <!--<argument name="collections" xsi:type="array">-->
+                <!--<item name="titan_items_grid_data_source" xsi:type="string">Titan\Pincode\Model\ResourceModel\Item\Grid\Collection</item>-->
+            <!--</argument>-->
+        <!--</arguments>-->
+    <!--</type>-->
+
+</config>

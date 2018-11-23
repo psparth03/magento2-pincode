@@ -1,0 +1,77 @@
+<?php
+ use \Magento\Store\Model\StoreManagerInterface;
+?>
+<script type="text/javascript" src="//js.maxmind.com/js/apis/geoip2/v2.1/geoip2.js"></script>
+<script type="text/javascript">
+    var onSuccess = function(location){
+        var pincode = JSON.parse(location['postal'].code, undefined, 4);
+        console.log(pincode);
+        pincode = parseInt(pincode);
+        jQuery("#pin_number").val(pincode);
+        console.log(
+            "Lookup successful:\n\n"
+            + JSON.stringify(location['postal'].code, undefined, 4)
+        );
+    };
+
+    var onError = function(error){
+        alert(
+            "Error:\n\n"
+            + JSON.stringify(error, undefined, 4)
+        );
+    };
+
+    geoip2.city(onSuccess, onError);
+</script>
+
+<form id="pin">
+    <input type="text" class="autocomplete" value="<?php echo $this->getValue();  ?>" placeholder="Enter a valid pincode to check availability" id="pin_number" name="pincode" required>
+    <input type="button" value="Apply" id="sub_button" name="sub_button">
+    <input type="hidden" value="<?php echo $this->getBaseUrl(); ?>" id="baseUrl"/>
+    <span id="message"></span>
+    <span id="cod_status"></span>
+</form>
+
+<script>
+    require([ 'jquery', 'jquery/ui'], function($){
+
+        $('#sub_button').click(function () {
+            var pin_number = $('#pin_number').val();
+            var url = $('#baseUrl').val();
+
+            var pin_validate = new RegExp('^[0-9]{6}$');
+
+            if(!pin_validate.test(pin_number)) {
+                $('#message').html("pincode should be 6 digits");
+            } else {
+                $.ajax({
+                    url: url + 'pincode/index/zipcode',
+                    type: "POST",
+                    dataType: 'json',
+                    data: {pin_number: pin_number},
+                    success: function (data) {
+                        console.log(data);
+                        if (data.status == 'success') {
+                            if (data.response.pincode == pin_number && data.response.status == 1) {
+                                $('#message').html('Delivery available');
+                                if (data.response.cod == 1) {
+                                    $('#cod_status').show();
+                                    $('#cod_status').html('&#10004;COD available');
+                                } else if (data.response.cod == 0) {
+                                    $('#cod_status').html('&#10008;COD not available');
+                                }
+                            } else {
+                                $('#message').html('Delivery not available');
+                            }
+                        } else {
+                            $('#message').html('This pincode is not registered with us');
+                            $('#cod_status').hide();
+                        }
+                    }
+                });
+            }
+
+        });
+
+    });
+</script>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Titan_Pincode::pincode" title="Pincode" module="Titan_Pincode" sortOrder="51" resource="Titan_Pincode::pincode" />
+        <add id="Titan_Pincode::pincode_grid" title="Pincode Grid" module="Titan_Pincode" sortOrder="10" parent="Titan_Pincode::pincode" action="pincode" resource="Titan_Pincode::pincode_grid"/>
+        <add id="Titan_Pincode::pincode_upload" title="Pincode Import" module="Titan_Pincode" sortOrder="20" action="pincode/index/upload" parent="Titan_Pincode::pincode" resource="Titan_Pincode::pincode_upload"/>
+    </menu>
+</config>

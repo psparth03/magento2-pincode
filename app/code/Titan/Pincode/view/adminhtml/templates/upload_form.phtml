@@ -1,0 +1,22 @@
+<?php
+
+//echo $block->getUrl("pincodes/index/uploadsave");
+
+?>
+
+<div class="pincode_box">
+    <form class="form form-upload" action='<?php echo $block->getUrl("pincode/index/uploadsave"); ?>'
+          method="post"
+          id="upload-form"
+          data-mage-init='{"validation":{}}' enctype="multipart/form-data" >
+        <?php echo $block->getBlockHtml('formkey'); ?>
+        <div class="required">
+            <div class="control">
+                <input name="upload" type="file" id="upload" data-validate="{required:true}">
+            </div>
+        </div>
+        <div class="actions-toolbar">
+            <div class="primary"><button type="submit" class="action upload primary" name="upload-btn" id="upload-btn"><span><?php /* @escapeNotVerified */ echo __('Import') ?></span></button></div>
+        </div>
+    </form>
+</div>

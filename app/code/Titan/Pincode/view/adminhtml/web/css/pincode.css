@@ -1,0 +1,9 @@
+.pincode_box{
+    width: 500px;
+    color: #000;
+    font-size: 18px;
+}
+
+.pincode_box .actions-toolbar{
+    margin-top: 10px;
+}
