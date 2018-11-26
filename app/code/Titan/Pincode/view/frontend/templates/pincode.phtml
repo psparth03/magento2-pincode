@@ -35,15 +35,18 @@
 <script>
     require([ 'jquery', 'jquery/ui'], function($){
 
-        $('#sub_button').click(function () {
+        $('#sub_button').click(function (e) {
             var pin_number = $('#pin_number').val();
             var url = $('#baseUrl').val();
 
-            var pin_validate = new RegExp('^[0-9]{6}$');
+            var pin_validate = new RegExp('^[1-9][0-9]{5}$');
 
             if(!pin_validate.test(pin_number)) {
-                $('#message').html("pincode should be 6 digits");
+                e.preventDefault();
+                $('#message').html("pincode should be 6 digits with no alphabets");
+                $('#cod_status').hide();
             } else {
+                e.preventDefault();
                 $.ajax({
                     url: url + 'pincode/index/zipcode',
                     type: "POST",
